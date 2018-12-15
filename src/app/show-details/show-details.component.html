@@ -1,0 +1,85 @@
+<div *ngIf="device != null">
+
+  <div class="modal" tabindex="-1" role="dialog" id="show-details">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Device Details - {{device._source.name}} </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-sm table-borderless">
+            <tr>
+              <td>Vendor</td>
+              <td> {{device._source.vendor}} </td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td> {{device._source.type}} </td>
+            </tr>
+            <tr>
+              <td>Network Id</td>
+              <td> {{device._source.network_id}} </td>
+            </tr>
+            <tr>
+              <td>Operator Id</td>
+              <td> {{device._source.operator_id}} </td>
+            </tr>
+            <tr>
+              <td>ID</td>
+              <td> {{device._id}} </td>
+            </tr>
+
+            <tr>
+              <td>Olt</td>
+              <td>  {{device._source.olt}} </td>
+            </tr>
+            <tr>
+              <td>Ont Distance</td>
+              <td> {{device._source.ont_distance}} </td>
+            </tr>
+            <tr>
+              <td>TX</td>
+              <td> {{device._source.tx_light_level}} </td>
+            </tr>
+            <tr>
+              <td>RX</td>
+              <td> {{device._source.rx_light_level}} </td>
+            </tr>
+            <!--{{device._source.alarms}}-->
+            <!--{{device._source.alerts}}-->
+            <tr>
+              <td>Operator Status</td>
+              <td>
+                <app-status-indicator [status]="device._source.oper_status"></app-status-indicator>
+              </td>
+            </tr>
+            <tr>
+              <td>Admin Status</td>
+              <td>
+                <app-status-indicator [status]="device._source.admin_status"></app-status-indicator>
+              </td>
+            </tr>
+            <tr><td>Alarms</td><td> {{device._source.alarms}} </td></tr>
+            <tr><td>Alerts</td><td> {{device._source.alerts}} </td></tr>
+            <tr>
+              <td>Last Uptime</td>
+              <td> {{device._source.last_uptime | humanDate}} </td>
+            </tr>
+            <tr>
+              <td>Date Added</td>
+              <td> {{device._source.added | humanDate}} </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

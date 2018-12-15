@@ -1,0 +1,47 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Device Viewer</a>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <form class="form-inline my-2 my-lg-0  ml-auto">
+      <input [(ngModel)]="queryText" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  name="queryText">
+      <button (click)="search()" class="btn btn-outline-success my-2 my-sm-0" >Search</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="grid grid-pad">
+ <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Olt</th>
+        <th scope="col">Name</th>
+        <th scope="col">Tx</th>
+        <th scope="col">Rx</th>
+        <th scope="col">Distance</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Operator</th>
+        <th scope="col">Uptime</th>
+        <th scope="col">Added</th>
+      </tr>
+      </thead>
+     <tr *ngFor="let device of deviceSources"  (click)="onSelect(device)">
+       <td> {{device._source.olt}}</td>
+       <td> {{device._source.name}}</td>
+       <td> {{device._source.tx_light_level}}</td>
+       <td> {{device._source.rx_light_level}}</td>
+       <td> {{device._source.ont_distance}}</td>
+       <td> <app-status-indicator [status]="device._source.oper_status"></app-status-indicator></td>
+       <td> <app-status-indicator [status]="device._source.admin_status"></app-status-indicator></td>
+       <td> {{device._source.last_uptime | humanDate}}</td>
+       <td> {{device._source.added | humanDate}}</td>
+      </tr>
+  </table>
+</div>
+
+
+<app-show-details [device]="selectedDevice"></app-show-details>
